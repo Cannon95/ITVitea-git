@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -62,29 +63,26 @@ public class Main {
         Scanner input = new Scanner(System.in);
         System.out.print("Geef een geheel positief getal: ");
         int getal = -1;
-        while(getal < 0){
-            String braaksel = input.nextLine();
-            if(!Pattern.matches("[0-9]+", braaksel)){
-                System.out.print("Dat is geen geheel positief getal. Geef een geheel positief getal: ");
+        while (getal < 0) {
+            try {
+                getal = input.nextInt();
+            } catch (InputMismatchException e) {
+                String catchblock = input.next();
+                System.out.print("Dat is geen geheel positief getal.Geef een geheel positief getal: ");
+                continue;
             }
-            else{
-                getal = Integer.parseInt(braaksel);
-                if(getal < 0){
-                    System.out.print("Dat is geen positief getal.Geef een geheel positief getal: ");
-                }
-
+            if (getal < 0) {
+                System.out.print("Dat is geen geheel positief getal.Geef een geheel positief getal: ");
             }
-
         }
         int evenGetallen = 0;
         int onevenGetallen = 0;
         for (int i = 0; i < getal; i++) {
 
-            if(i%2 == 0){
+            if (i % 2 == 0) {
                 evenGetallen += i;
-            }
-            else{
-                onevenGetallen +=i;
+            } else {
+                onevenGetallen += i;
             }
         }
         System.out.println(String.format("som van oneven getallen tot en met %d is %d", getal, onevenGetallen));
@@ -168,7 +166,6 @@ public class Main {
 
         return decrypt;
     }
-
 
 
 }
