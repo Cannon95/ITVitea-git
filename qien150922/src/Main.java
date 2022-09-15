@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -22,26 +23,37 @@ public class Main {
 //
 //
 //    }
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
+//
+//        Scanner input = new Scanner(System.in);
+//        System.out.println("Voer het aantal graden Fahrenheit in");
+//        float getal = input.nextFloat();
+//
+//        float celsius = fahrenheit2Celsius(getal);
+//        System.out.println(String.format("het is %f graden celsius ", celsius));
+//        System.out.println("Geef nu een een aantal meters");
+//        float meter = input.nextFloat();
+//        System.out.println("Geef nu een een aantal seconden");
+//        float seconden = input.nextFloat();
+//        float[] snelheden = snelheid(meter * seconden);
+//        System.out.println("invoer meters: " + meter);
+//        System.out.println("invoer tijd in uur: " + seconden/3600F);
+//        System.out.println("snelheid in m/s: " + meter*seconden);
+//        System.out.println("snelheid in km/u: " + snelheden[0]);
+//        System.out.println("snelheid in mph: " + snelheden[1]);
+//
+//    }
+public static void main(String[] args) {
+    Scanner input = new Scanner(System.in);
+    System.out.print("voer een String in: ");
+    String text = input.nextLine();
+    String onleesbaar = onleesbaar(text);
+    String leesbaar = maakLeesbaar(onleesbaar);
+    System.out.println("ingevoerde text: " + text);
+    System.out.println("encrypted: " + onleesbaar);
+    System.out.println("decrypted: " + leesbaar);
+}
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Voer het aantal graden Fahrenheit in");
-        float getal = input.nextFloat();
-
-        float celsius = fahrenheit2Celsius(getal);
-        System.out.println(String.format("het is %f graden celsius ", celsius));
-        System.out.println("Geef nu een een aantal meters");
-        float meter = input.nextFloat();
-        System.out.println("Geef nu een een aantal seconden");
-        float seconden = input.nextFloat();
-        float[] snelheden = snelheid(meter * seconden);
-        System.out.println("invoer meters: " + meter);
-        System.out.println("invoer tijd in uur: " + seconden/3600F);
-        System.out.println("snelheid in m/s: " + meter*seconden);
-        System.out.println("snelheid in km/u: " + snelheden[0]);
-        System.out.println("snelheid in mph: " + snelheden[1]);
-
-    }
     public static int toMinutes(short year, byte months, byte weeks, byte days, byte hours){
 
         int minutes = 0;
@@ -67,8 +79,61 @@ public class Main {
     public static float[] snelheid(float ms){
         float kmu = ms/3.6F;
         float mph = kmu*1.609F;
-        float[] arrList = {kmu,mph}
+        float[] arrList = {kmu,mph};
         return arrList;
+    }
+
+    public static String onleesbaar(String s){
+        String encrypt = "";
+        char[] charList = s.toCharArray();
+        for (int i = 0; i < charList.length; i++) {
+            int var1 = i  == charList.length - 1 ? (int)charList[i] * 5 + 15 : (int)charList[i] * 5 + 15 + charList[i+1];
+            char var2 = (char)(var1/128);
+            char var3 =  (char)(var1%128);
+            System.out.println("chars: " + var2 + "" + var3);
+            encrypt += var2 + "" + var3;
+        }
+
+        return encrypt;
+    }
+
+    public static String maakLeesbaar(String s){
+        String decrypt = "";
+        char[] charList = s.toCharArray();
+        for (int i = charList.length -1; i > -1; i -=2) {
+            if(0 == i){
+                System.out.println("Error during decrypting: not encrypted this way");
+                return "err";
+            }
+            else if(i == charList.length - 1){
+                int var1 = charList[i-1]*128 + charList[i];
+                int var2 = (var1 - 15)/5;
+                System.out.println("var1: " + var1 + " , var2: " + var2);
+                if (var2 > 127){
+                    System.out.println("Error during decrypting: calculation error");
+                    return "err";
+                }
+                else{
+                    decrypt += (char)var2;
+                }
+            }
+            else{
+                int var1 = charList[i-1]*128 + charList[i];
+                char var1b = decrypt.toCharArray()[0];
+                int var2 = (var1 - 15 - (int)var1b)/5;
+                System.out.println("var1: " + var1 + " , var2: " + var2);
+                if (var2 > 127){
+                    System.out.println("Error during decrypting: calculation error");
+                    return "err";
+                }
+                else{
+                    decrypt = (char)var2 + decrypt;
+                }
+            }
+
+        }
+
+        return decrypt;
     }
 
 }
