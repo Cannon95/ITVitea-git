@@ -7,7 +7,7 @@ public class Matrix {
     double[][] matrix;
 
     public Matrix(int rowSize, int ColumnSize, double fill){
-        matrix = new[rowSize][ColumnSize];
+        matrix = new double[rowSize][ColumnSize];
         Arrays.fill(matrix, fill);
         for (int i = 0; i < rowSize; i++) {
             Arrays.fill(matrix[i], fill);
