@@ -38,9 +38,8 @@ public class Main {
         }
         else {
             System.out.println("De eerste " + getal + " Lucas-getallen:");
-            for (int waarde : result ) {
-                System.out.print(waarde + " ");
-            }
+
+            result.forEach(i -> System.out.println(i + " "));
 
         }
     }
