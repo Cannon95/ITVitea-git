@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0e2bac8-24ad-4320-af76-3f258884dfda" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Weekopdrachten/src/main/java/com/markvdvliert/Weekopdrachten/controllers/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Weekopdrachten/src/main/resources/html/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Weekopdrachten/src/main/resources/html/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../opdrachtweek2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qien220922.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../springproject/src/main/java/com/markvdvliert/springproject/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaJsTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaJsTest/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MijnObjects/out/production/MijnObjects/com/markvdviert/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MijnObjects/out/production/MijnObjects/com/markvdviert/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MijnObjects/out/production/MijnObjects/com/markvdviert/main/util/LogicalArray.class" beforeDir="false" afterPath="$PROJECT_DIR$/../MijnObjects/out/production/MijnObjects/com/markvdviert/main/util/LogicalArray.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MijnObjects/src/com/markvdviert/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MijnObjects/src/com/markvdviert/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MijnObjects/src/com/markvdviert/main/util/LogicalArray.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MijnObjects/src/com/markvdviert/main/util/LogicalArray.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../springproject/src/main/java/com/markvdvliert/springproject/model/Boek.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/qien220922/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/qien220922/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../springproject/src/main/java/com/markvdvliert/springproject/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springproject/src/main/java/com/markvdvliert/springproject/controller/TestController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +25,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

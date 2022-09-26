@@ -1,9 +1,7 @@
 package com.markvdvliert.springproject.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.markvdvliert.springproject.model.Boek;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/test")
@@ -16,5 +14,11 @@ public class TestController {
         else return "code";
     }
 
+    @PostMapping("/nieuw")
+    public void testMapping(@RequestBody Boek boek) {
+        System.out.println(boek.naam);
+    }
+
 
 }
+

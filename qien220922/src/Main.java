@@ -8,7 +8,7 @@ import java.util.function.IntConsumer;
 
 public class Main {
     public static void main(String[] args) {
-        opdracht2();
+        Eindopdracht();
     }
 
     static void opdracht1() {
@@ -50,6 +50,56 @@ public class Main {
     }
 
     static void Eindopdracht(){
+        String raadHetWoord = "broodje";
+        Scanner input = new Scanner(System.in);
+        List<Character> woord = new ArrayList<>();
+        List<Character> geheim = new ArrayList<>();
+
+        int wrongGuesses = 5;
+        for (char c : raadHetWoord.toCharArray()) {
+            woord.add(c);
+            geheim.add('_');
+        }
+        do{
+            geheim.stream().forEach(System.out::print);
+            System.out.println(" ( " + wrongGuesses + " verkeerde gokken over)");
+
+            System.out.print("raad een letter of het hele woord: ");
+
+            String ans = input.nextLine();
+            if(ans.equals(raadHetWoord)){
+                geheim.clear();
+                System.out.println("je hebt het woord geraden, gefeliciteerd");
+
+            } else if (ans.length() == 1 && raadHetWoord.contains(ans)) {
+
+                for (int i = 0; i < raadHetWoord.toCharArray().length; i++) {
+                    String letter = "" + raadHetWoord.toCharArray()[i];
+                    if(letter.equals(ans)){
+                        if(("" + geheim.get(i)).equals(ans)){
+                            wrongGuesses--;
+                            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
+                            System.out.println("Die letter was al gegokt...");
+                            break;
+                        }else{
+                            geheim.set(i, ans.toCharArray()[0]);
+                            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
+                            System.out.println("je hebt een letter geraden");
+
+                        }
+
+                    }
+                }
+
+            } else{
+                wrongGuesses--;
+                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
+                System.out.println("het woord bevat deze letter niet");
+            }
+
+        }while(wrongGuesses >= 0 && geheim.contains('_'));
+
+
 
     }
 }
