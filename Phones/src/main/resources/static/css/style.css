@@ -1,0 +1,38 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Signika', sans-serif;
+    text-transform: uppercase;
+    color: #333;
+    text-shadow:
+        -0.5px -0.5px 0 #000,
+        0.5px -0.5px 0 #000,
+        -0.5px 0.5px 0 #000,
+        0.5px 0.5px 0 #000;
+}
+
+.ui {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(100, 100, 100, 1);
+
+    z-index: 0;
+}
+.balkje{
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 1);
+
+}
+.veldje{
+    position: relative;
+    top: 1%;
+    left: 86%;
+    width: 12vw;
+}

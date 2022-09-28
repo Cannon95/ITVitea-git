@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e0e2bac8-24ad-4320-af76-3f258884dfda" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../springproject/src/main/java/com/markvdvliert/springproject/model/Boek.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/qien220922/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/qien220922/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../springproject/src/main/java/com/markvdvliert/springproject/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../springproject/src/main/java/com/markvdvliert/springproject/controller/TestController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
