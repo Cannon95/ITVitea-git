@@ -20,9 +20,17 @@
     $(document).ready(function () {
         $("body").on("keydown", function (key) {
              if(key.which == 13){
-                 $.post("http://localhost:8080/phones", JSON.stringify({
-                    naam: $("#zoeken").val()
-                 }));
+                 var jsonString = JSON.stringify({
+                       naam: $("#zoeken").val(),
+                      test: $("#zoeken").val(),
+                     kip: $("#zoeken").val()
+                 });
+                 $.ajax("http://localhost:8080/phones", {
+                      data: jsonString,
+                     contentType : 'application/json',
+                     type : 'POST',
+
+                  });
              }
         });
     });

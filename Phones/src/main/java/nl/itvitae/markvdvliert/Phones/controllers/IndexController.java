@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +21,11 @@ public class IndexController {
         return "main.html";
     }
 
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     @ResponseBody
-    public TestObject blabla2(@RequestParam("test") TestObject test){
-        System.out.println(test.getNaam());
+    public String blabla3(@RequestBody String test){
+        System.out.println("endpoint b");
+        System.out.println(test);
         return test;
     }
 
