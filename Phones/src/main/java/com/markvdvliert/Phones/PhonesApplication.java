@@ -1,17 +1,13 @@
-package nl.itvitae.markvdvliert.Phones;
+package com.markvdvliert.Phones;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+@SpringBootApplication
 public class PhonesApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(PhonesApplication.class, args);
 	}
 
 }
-
-

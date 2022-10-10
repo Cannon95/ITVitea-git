@@ -9,18 +9,14 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.markvdvliert</groupId>
-	<artifactId>Phones</artifactId>
+	<artifactId>ganzenbord</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Phones</name>
-	<description>Demo project for Spring Boot</description>
+	<name>ganzenbord</name>
+	<description>ganzenbord project ITVitae</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>

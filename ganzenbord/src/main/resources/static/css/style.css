@@ -20,18 +20,20 @@
 
     z-index: 0;
 }
-.balkje{
+.spel{
     position: relative;
-    left: 0;
-    top: 0;
+    left: 4%;
+    top: 4%;
     width: 100vw;
-    height: 30px;
-    background-color: rgba(0, 0, 0, 1);
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
 
 }
 .veldje{
     position: relative;
-    top: 1%;
-    left: 86%;
-    width: 12vw;
+    top: 2%;
+    left: 2%;
+    left: 10%;
+    width: 10%;
+    background-color: rgba(0, 200, 200, 1);
 }
