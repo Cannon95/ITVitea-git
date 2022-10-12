@@ -11,15 +11,16 @@ import java.util.function.Consumer;
 
 public class GBService {
 
-    public List<Player> players = List.of(new Player("Mark", "blue", 0, EnumStatus.START));//new ArrayList<>();
+    public static List<Player> players = new ArrayList<>();//new ArrayList<>();
     public static int PlayerTurn = 0;
-    int thr1;
-    int thr2;
+    static int thr1;
+    static int thr2;
+    public static boolean isStarted = false;
 
 
-    GField[] fields = new GField[64];
+    public static GField[] fields = new GField[64];
 
-    public void init(){
+    public static void init(){
         Arrays.fill(fields, new GField());
         fields[5] = new GDouble();
         fields[6] = new GSwift(12);
@@ -45,7 +46,7 @@ public class GBService {
     }
 
 
-    public void throwDices(){
+    public static SendForm throwDices(){
         thr1 = new Random().nextInt(6) + 1;
         thr2 = new Random().nextInt(6) + 1;
         Player player = players.get(PlayerTurn);
@@ -53,32 +54,33 @@ public class GBService {
         if(player.getStatus() == EnumStatus.START){
             player.setStatus(EnumStatus.FREE);
             if(thr1 == 5 && thr2 == 4 || thr1 == 4 && thr2 == 5){
-                player.setPosition(53);
+
+                return new SendForm("vlieg", new String[]{PlayerTurn++ + "", 53 + ""});
             }
             else if(thr1 == 3 && thr2 == 6 || thr1 == 6 && thr2 == 3){
-                player.setPosition(26);
+
+                return new SendForm("vlieg", new String[]{PlayerTurn++ + "", 26 + ""});
             }
         }
         else{
-            field(player,pos, thr1 + thr2);
+            return field(player,pos, thr1 + thr2);
+
         }
-
+        return new SendForm("err", new String[0]);
     }
 
-    public void addPlayer(int color){
-
-    }
-
-    public void field(Player player, int pos, int thr){
+    public static SendForm field(Player player, int pos, int thr){
         int finalPos = pos + thr;
         if(finalPos > 63){
             finalPos = 63 - (finalPos-63);
         }
         if(fields[finalPos] instanceof GDouble){
-            field(player, pos + thr, thr);
+            return field(player, pos , thr*2);
         }
         else{
-            fields[finalPos].execute(player, thr);
+
+            int newPos = fields[finalPos].execute(player, thr);
+            return new SendForm("gooi", new String[]{PlayerTurn++ + "", newPos + "", thr + "", pos + ""});
         }
 
 

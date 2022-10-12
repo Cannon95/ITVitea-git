@@ -1,20 +1,25 @@
 package com.markvdvliert.ganzenbord.model;
 
 public class GField {
-    public void execute(Player player, int thr){}
+    public int execute(Player player, int thr){
+        return player.getPosition() + thr;
+    }
 
 }
 
 class GWell extends GField{
     @Override
-    public void execute(Player player, int thr){
+    public int execute(Player player, int thr){
+
         player.setStatus(EnumStatus.TRAPPED);
+        return player.getPosition() + thr;
     }
 }
 class GJail extends GField{
     @Override
-    public void execute(Player player, int thr){
+    public int execute(Player player, int thr){
         player.setStatus(EnumStatus.TRAPPED);
+        return player.getPosition() + thr;
     }
 }
 class GDouble extends GField{
@@ -28,8 +33,9 @@ class GSwift extends GField{
         this.pos = pos;
     }
     @Override
-    public void execute(Player player, int thr){
-        player.setPosition(this.pos);
+    public int execute(Player player, int thr){
+
+        return this.pos;
     }
 
 }
@@ -37,7 +43,8 @@ class GInn extends GField{
 
 
     @Override
-    public void execute(Player player, int thr){
+    public int execute(Player player, int thr){
         player.setStatus(EnumStatus.SKIP);
+        return player.getPosition() + thr;
     }
 }

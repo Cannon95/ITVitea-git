@@ -10,8 +10,17 @@
 <body>
     <div class="ui">
         <div class="spel">
-
+            <div class="balkje" id="balkVoegToe">Voeg speler toe:</div>
+            <div class="balkje" id="balkNaam">naam</div>
+            <input class="balkje" type="text" id="speler" name="">
+            <div class="balkje" id="balkKleur">kleur</div>
+            <input class="balkje" type="text" id="kleur" name="">
+            <button class="submit" type="button" onclick="submit(speler, kleur)">toevoegen</button>
+            <button class="start" type="button" onclick="start(kleur)">starten</button>
+            <button class="dice" type="button" onclick="gooi(speler)">gooi</button>
+            <div class="notify" id="notify">Test123</div>
         </div>
+
     </div>
 </body>
     <script type="text/javascript" src="/js/script.js"></script>
