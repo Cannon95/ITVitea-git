@@ -11,14 +11,26 @@ class GWell extends GField{
     @Override
     public int execute(Player player, int thr){
 
-        player.setStatus(EnumStatus.TRAPPED);
+        player.setStatus(EnumStatus.SKIP);
+        for (int i = 0; i < GBService.players.size(); i++) {
+            if(player.getPosition() > GBService.players.get(i).getPosition()){
+                player.setStatus(EnumStatus.TRAPPED);
+            }
+        }
         return player.getPosition() + thr;
     }
 }
 class GJail extends GField{
     @Override
     public int execute(Player player, int thr){
-        player.setStatus(EnumStatus.TRAPPED);
+
+        player.setStatus(EnumStatus.SKIP);
+        for (int i = 0; i < GBService.players.size(); i++) {
+            if(player.getPosition() > GBService.players.get(i).getPosition()){
+                player.setStatus(EnumStatus.TRAPPED);
+            }
+        }
+
         return player.getPosition() + thr;
     }
 }

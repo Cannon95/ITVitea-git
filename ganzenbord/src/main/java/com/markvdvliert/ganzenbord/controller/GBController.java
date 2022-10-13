@@ -28,16 +28,19 @@ public class GBController {
         else if(sf.action().equals("start")){
             GBService.isStarted = true;
             String[] message = new String[GBService.players.size()];
+            if(GBService.players.size() == 0){
+                return new SendForm("notify", new String[]{"er zijn nog geen spelers aangemaakt, maak minstens 1 speler aan"});
+            }
             for (int i = 0; i < GBService.players.size(); i++) {
                 message[i] = GBService.players.get(i).getColor();
             }
             return new SendForm("start", new String[]{});
         }
         else if(sf.action().equals("gooi")){
-            GBService.throwDices();
+            return GBService.throwDices();
         }
         else if(sf.action().equals("check")){
-            int ID = Integer.parseInt(sf.message()[1]);
+            int ID = Integer.parseInt(sf.message()[0]);
             for ( Player p :GBService.players) {
 
                 if (p.getStatus() == EnumStatus.TRAPPED && p.getPosition() == ID){
@@ -45,7 +48,16 @@ public class GBController {
                 }
             }
         }
-        System.out.println("" + sf.action() + "input1: " + sf.message()[0] + " , 2: " + sf.message()[1]);
+        try{
+           // System.out.println("" + sf.action() + "input1: " + sf.message()[0] + " , 2: " + sf.message()[1]);
+        }catch(ArrayIndexOutOfBoundsException e){
+            System.out.println("Out of Bounds: " + sf.action());
+            for (int i = 0; i < sf.message().length; i++) {
+                System.out.println("oob messagelist: " + sf.message()[i]);
+            }
+            throw e;
+        }
+
         return new SendForm("niks", new String[]{"doen"});
     }
 

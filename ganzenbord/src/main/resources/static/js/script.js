@@ -102,12 +102,18 @@ function start(speler){
                       type : 'POST',
                  });
                  posting.done(function(data){
+                    if(data.action === "notify"){
+                        $("#notify").html(data.message[0]);
+                    }
+                    else{
                        $("#balkVoegToe").hide();
                        $("#balkNaam").hide();
                        $("#balkKleur").hide();
                        $("#speler").hide();
                        $("#kleur").hide();
-                       $(".dice").show();
+                       $(".submit").hide();
+                       $(".start").hide();
+                       $(".dice").css("visibility","visible");
 
                       for(i = 0; i < data.message.length; i++){
                         var color = data.message[i];
@@ -122,6 +128,7 @@ function start(speler){
                          $("#veld-0").append('<div class="pion" id="speler-' + i + '">')
                          $("#speler-" + i).css('background-color', color)
                       }
+                    }
 
                  });
         }
@@ -141,8 +148,8 @@ function submit(name, kleur){
             var name = data.message[1];
               $(".spel").append('<div class="balkje" id="spelern-' + ID +'">' + name +'</div>');
               console.log("location: " + (190 + ID*30) + "px")
-              $("speler-" + ID).css("top", (190 + ID*30) + "px")
-              $("#veld-49").append('<div class="pion" id="speler-' + ID + '">')
+              $("#veld-0").append('<div class="pion" id="speler-' + ID + '">')
+              $("#speler-" + ID).css("top", (190 + ID*30) + "px")
               $("#speler-" + ID).css('background-color', '#00F')
          });
 }
@@ -159,22 +166,60 @@ function gooi(speler){
               type : 'POST',
          });
          posting.done(function(data){
-            var speler = data.message[0];
-            var pos = data.message[1];
-            var worp = data.message[2];
-            var prevPos = data.message[3];
-              $(".spel").append('<div class="balkje" id="spelern-' + ID +'">' + name +'</div>');
-              console.log("location: " + (190 + ID*30) + "px")
-              $("speler-" + ID).css("top", (190 + ID*30) + "px")
-              $("#veld-49").append('<div class="pion" id="speler-' + ID + '">')
-              $("#speler-" + ID).css('background-color', '#00F')
-              iv = setInterval(loop2task, 500)
-              function loop2task(){
+            var ID = data.message[0];
+            var speler = data.message[1];
+            var pos = data.message[2];
+            var worp1 = data.message[3];
+            var worp2 = data.message[4];
+            var prevPos = data.message[5];
+            var nextID = data.message[6];
+            var not0 = data.message[7];
+            var color = data.message[8];
 
+               console.log(color)
+
+
+              $("#veld-" + pos).append('<div class="pion" id="speler-' + ID + '">')
+              $("#speler-" + ID).css('background-color', color)
+              if(prevPos == 0 && not0 === "true"){
+                $("#veld-0").html("0");
               }
+              else if(prevPos == 0){
+                 $("#veld-0").append('<div class="pion" id="speler-' + 1000 + '">')
+                 $("#speler-" + 1000).css("top", (190 + ID*30) + "px")
+                 $("#speler-" + 1000).css('background-color', not0)
+              }
+              else{
+                   $("#veld-" + prevPos).html(prevPos + "");
+              }
+
+              $("#notify").html("speler " + speler + " gooide " + worp1 + " en " + worp2 + "!")
+               if(trap(prevPos, pos) !== -1){
+                    var jsonString = JSON.stringify({
+                             action: "check",
+                             message: [trap(prevPos, pos)]
+                    });
+                    var posting = $.ajax("http://localhost:8080/ganzenbord", {
+                             data: jsonString,
+                             contentType : 'application/json',
+                             type : 'POST',
+                    });
+
+               }
+
          });
 
 
+}
+
+function trap(prevPos, pos){
+    if(prevPos < 52 && pos > 52){
+        return 52
+    }
+    else if(prevPos < 31 && pos > 31){
+        return 31
+    }
+    return -1;
 }
 
 
