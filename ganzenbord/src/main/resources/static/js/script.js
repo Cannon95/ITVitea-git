@@ -92,18 +92,15 @@ for(i = 58; i < 63; i++){
 });
 
 function start(speler){
-        var jsonString = JSON.stringify({
-                      action: "start",
-                      message: ["niks"]
-                 });
-                 var posting = $.ajax("http://localhost:8080/ganzenbord", {
+                 var jsonString = JSON.stringify({});
+                 var posting = $.ajax("http://localhost:8080/ganzenbord/startGame", {
                       data: jsonString,
                       contentType : 'application/json',
                       type : 'POST',
                  });
                  posting.done(function(data){
-                    if(data.action === "notify"){
-                        $("#notify").html(data.message[0]);
+                    if(data !== "start"){
+                        $("#notify").html(data);
                     }
                     else{
                        $("#balkVoegToe").hide();
@@ -115,19 +112,16 @@ function start(speler){
                        $(".start").hide();
                        $(".dice").css("visibility","visible");
 
-                      for(i = 0; i < data.message.length; i++){
+
                         var color = data.message[i];
                         if(i === 0){
-                        $("#spelern-" + i).css("color", "yellow")
-                        }
-                        else
-                        {
-                        $("#spelern-" + i).css("color", "white")
+                        $("#spelern-0").css("color", "yellow")
                         }
 
+
                          $("#veld-0").append('<div class="pion" id="speler-' + i + '">')
-                         $("#speler-" + i).css('background-color', color)
-                      }
+                         $("#speler-0").css('background-color', "#00F")
+
                     }
 
                  });
@@ -135,17 +129,17 @@ function start(speler){
 function submit(name, kleur){
 
          var jsonString = JSON.stringify({
-              action: "addPlayer",
-              message: [name.value, kleur.value]
+              player: name.value,
+              color: kleur.value
          });
-         var posting = $.ajax("http://localhost:8080/ganzenbord", {
+         var posting = $.ajax("http://localhost:8080/ganzenbord/addPlayer", {
               data: jsonString,
               contentType : 'application/json',
               type : 'POST',
          });
          posting.done(function(data){
-            var ID = data.message[0];
-            var name = data.message[1];
+            var ID = data[0];
+            var name = data[1];
               $(".spel").append('<div class="balkje" id="spelern-' + ID +'">' + name +'</div>');
               console.log("location: " + (190 + ID*30) + "px")
               $("#veld-0").append('<div class="pion" id="speler-' + ID + '">')
@@ -156,25 +150,22 @@ function submit(name, kleur){
 
 function gooi(speler){
 
- var jsonString = JSON.stringify({
-              action: "gooi",
-              message: ["niks"]
-         });
-         var posting = $.ajax("http://localhost:8080/ganzenbord", {
+ var jsonString = JSON.stringify({});
+         var posting = $.ajax("http://localhost:8080/ganzenbord/gooien", {
               data: jsonString,
               contentType : 'application/json',
               type : 'POST',
          });
          posting.done(function(data){
-            var ID = data.message[0];
-            var speler = data.message[1];
-            var pos = data.message[2];
-            var worp1 = data.message[3];
-            var worp2 = data.message[4];
-            var prevPos = data.message[5];
-            var nextID = data.message[6];
-            var not0 = data.message[7];
-            var color = data.message[8];
+            var ID = data[0];
+            var speler = data[1];
+            var pos = data[2];
+            var worp1 = data[3];
+            var worp2 = data[4];
+            var prevPos = data[5];
+            var nextID = data[6];
+            var not0 = data[7];
+            var color = data[8];
 
                console.log(color)
 
@@ -196,10 +187,9 @@ function gooi(speler){
               $("#notify").html("speler " + speler + " gooide " + worp1 + " en " + worp2 + "!")
                if(trap(prevPos, pos) !== -1){
                     var jsonString = JSON.stringify({
-                             action: "check",
-                             message: [trap(prevPos, pos)]
+                             pos: trap(prevPos, pos)
                     });
-                    var posting = $.ajax("http://localhost:8080/ganzenbord", {
+                    var posting = $.ajax("http://localhost:8080/ganzenbord/check", {
                              data: jsonString,
                              contentType : 'application/json',
                              type : 'POST',
