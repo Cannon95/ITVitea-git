@@ -11,10 +11,9 @@ public class PlayerService {
     }
 
     public void freePlayer(String pos){
-        int ID = Integer.parseInt(pos);
         for ( Player p : GameDB.players) {
 
-            if (p.getStatus() == EnumStatus.TRAPPED && p.getPosition() == ID){
+            if (p.getStatus() == EnumStatus.TRAPPED && p.getPosition() == Integer.parseInt(pos)){
                 p.setStatus(EnumStatus.FREE);
             }
         }

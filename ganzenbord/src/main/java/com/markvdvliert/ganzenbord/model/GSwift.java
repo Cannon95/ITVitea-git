@@ -8,7 +8,7 @@ package com.markvdvliert.ganzenbord.model;
             this.pos = pos;
         }
         @Override
-        public int execute(Player player, int thr){
+        public int execute(Player player, int pos, int thr){
 
             return this.pos;
         }

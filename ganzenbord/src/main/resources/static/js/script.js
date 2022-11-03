@@ -99,7 +99,7 @@ function start(speler){
                       type : 'POST',
                  });
                  posting.done(function(data){
-                    if(data !== "start"){
+                    if(data.action !== "start"){
                         $("#notify").html(data);
                     }
                     else{
@@ -113,7 +113,7 @@ function start(speler){
                        $(".dice").css("visibility","visible");
 
 
-                        var color = data.message[i];
+                        var color = "#FFF";
                         if(i === 0){
                         $("#spelern-0").css("color", "yellow")
                         }
@@ -138,13 +138,16 @@ function submit(name, kleur){
               type : 'POST',
          });
          posting.done(function(data){
-            var ID = data[0];
-            var name = data[1];
+            var ID = data.ID;
+            var name = data.name;
+            console.log("ID: " + ID + " , name: " + name)
               $(".spel").append('<div class="balkje" id="spelern-' + ID +'">' + name +'</div>');
               console.log("location: " + (190 + ID*30) + "px")
               $("#veld-0").append('<div class="pion" id="speler-' + ID + '">')
               $("#speler-" + ID).css("top", (190 + ID*30) + "px")
               $("#speler-" + ID).css('background-color', '#00F')
+              document.getElementById("speler").value = ""
+              document.getElementById("kleur").value = ""
          });
 }
 
@@ -157,21 +160,21 @@ function gooi(speler){
               type : 'POST',
          });
          posting.done(function(data){
-            var ID = data[0];
-            var speler = data[1];
-            var pos = data[2];
-            var worp1 = data[3];
-            var worp2 = data[4];
-            var prevPos = data[5];
-            var nextID = data[6];
-            var not0 = data[7];
-            var color = data[8];
+            var ID = data.turn;
+            var speler = data.name;
+            var pos = data.newPos;
+            var worp1 = data.thr1;
+            var worp2 = data.thr2;
+            var prevPos = data.oldPos;
+            var nextID = data.nextPlayer;
+            var not0 = data.not0;
+            var color = data.color;
 
-               console.log(color)
+               console.log(ID + " " + speler + " " + pos + " " + worp1 + " " + worp2 + " " + prevPos + " " + nextID + " " + not0 + " " + color);
 
 
-              $("#veld-" + pos).append('<div class="pion" id="speler-' + ID + '">')
-              $("#speler-" + ID).css('background-color', color)
+              $("#veld-" + pos).append('<div class="pion" id="speler-' + pos + '">')
+              $("#speler-" + pos).css('background-color', color)
               if(prevPos == 0 && not0 === "true"){
                 $("#veld-0").html("0");
               }

@@ -1,6 +1,7 @@
 package com.markvdvliert.ganzenbord.controller;
 
 
+import com.markvdvliert.ganzenbord.model.types.BevrijdingsCheckType;
 import com.markvdvliert.ganzenbord.service.PlayerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,8 @@ public class BordController {
     @PostMapping
     @ResponseBody
     @RequestMapping(path = "/ganzenbord/check")
-    public String bevrijdingsCheck(@RequestBody String pos){
-        new PlayerService().freePlayer(pos);
+    public String bevrijdingsCheck(@RequestBody BevrijdingsCheckType type){
+        new PlayerService().freePlayer(type.pos() + "");
         return "";
     }
 }
