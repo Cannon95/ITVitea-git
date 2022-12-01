@@ -1,0 +1,54 @@
+ {
+    padding: 0;
+    margin: 0;
+    font-family: 'Signika', sans-serif;
+    color: #FFF;
+    text-shadow:
+        -0.5px -0.5px 0 #000,
+        0.5px -0.5px 0 #000,
+        -0.5px 0.5px 0 #000,
+        0.5px 0.5px 0 #000;
+}
+
+.ui {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(50, 50, 50, 1);
+    z-index: 0;
+}
+.veld1{
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    width: 450px;
+    height: 450px;
+
+
+}
+
+.veld2{
+    position: absolute;
+    left: 60%;
+    top: 10%;
+    width: 450px;
+    height: 450px;
+}
+
+.veld{
+    position: relative;
+    float: left;
+    width: 37px;
+    height: 37px;
+    border: 1px solid #000;
+    background-color: #00F;
+    margin: 3px;
+}
+.ship{
+    position: absolute;
+    background-color: rgba(0, 200, 0, 1);
+    border: 3px solid #000;
+
+}

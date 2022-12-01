@@ -1,0 +1,9 @@
+
+class example2 >
+
+    execute(args) ->
+        var test1 = 3
+        mea test2 = >3.0:0.1 "kg"<
+
+    <
+<

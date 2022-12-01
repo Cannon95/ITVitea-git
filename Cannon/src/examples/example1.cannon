@@ -1,0 +1,11 @@
+
+class example1 >
+    execute(args) >
+       ["Hello, World!"]
+       test123()
+    <
+
+    test123() >
+        ["function Call Works!"]
+    <
+<
