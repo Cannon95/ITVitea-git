@@ -1,0 +1,21 @@
+* {
+  padding: 0%;
+  margin: 0%;
+  background-color: black;
+}
+
+header {
+  position: absolute;
+  display: flex;
+  height: 40px;
+  width: 100%;
+  background: linear-gradient(180deg, rgb(2, 0, 36) 11%, rgb(9, 9, 121) 84%, rgb(0, 134, 255) 100%);
+}
+
+.section-A {
+  position: absolute;
+  display: flex;
+  width: 80%;
+  left: 10%;
+  height: 40%;
+}/*# sourceMappingURL=style.css.map */

@@ -14,7 +14,28 @@
     grid-template-rows: 1fr 1fr;
     overflow-x: scroll;
 }
-
+.keyWhite{
+    position: relative;
+    background-color: white;
+}
+.keyBlack{
+    position: relative;
+    background-color: black;
+}
+.keyWhite:active{
+    background-color: blue;
+}
+.keyBlack:active{
+    background-color: blue;
+}
+.KBSelect{
+    color: blue;
+    font-size: 20px;
+    position: absolute;
+    top: 80%;
+    left: 30%;
+    
+}
 
 .wkeyText{
     position: absolute;

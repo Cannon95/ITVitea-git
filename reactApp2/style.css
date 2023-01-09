@@ -1,0 +1,19 @@
+header {
+    position: absolute;
+    background-color: black;
+    height: 48%;
+    width: 100%;
+}
+#title {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 15vh;
+}
+section {
+    position: absolute;
+    top: 50%;
+    width: 98%;
+    display: flex;
+    justify-content: space-evenly;
+}
