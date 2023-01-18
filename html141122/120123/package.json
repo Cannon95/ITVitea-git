@@ -1,0 +1,11 @@
+{
+  "name": "120123",
+  "version": "1.0.0",
+  "description": "React App test",
+  "main": "script.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "MarkvdVliert",
+  "license": "ISC"
+}

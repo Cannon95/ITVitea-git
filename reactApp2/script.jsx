@@ -1,12 +1,12 @@
 const Header = () => {
     return (
         <header>
-            <div id="title">Ranked: <strong>top<br></br>5 cities</strong><br></br> of the world!</div>
+            <div id="title">Ranked: <strong>top<br/>5 cities</strong><br/> of the world!</div>
         </header>
     )
 }
 
-const Cities = [
+const cities = [
     {
         name: "Amsterdam",
         img: "fournullfour.png",
@@ -66,7 +66,7 @@ const City = props => {
 const Section = () => {
     return (
         <section>
-            {Cities.map(city =>
+            {cities.map(city =>
             <City 
                 name={city.name}
                 img={city.img}

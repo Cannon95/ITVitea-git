@@ -1,0 +1,33 @@
+#header {
+    position: absolute;
+    display: flex;
+    background-color: rgb(128, 128, 128);
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+    height: 60px;
+    justify-content: space-between;
+}
+h2 {
+    margin: 10px
+}
+
+p {
+    margin: 17.5px;
+}
+
+#addTask {
+    position: absolute;
+    background-color: brown;
+    left: 5%;
+    width: 90%;
+    height: 45px;
+    border-radius: 15px;
+    top: 70px;
+}
+
+.task {
+    width: 100%;
+    height: 45px;
+    background-color: rgb(116, 116, 116);
+    border-radius: 15px;
+}

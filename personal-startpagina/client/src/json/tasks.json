@@ -1,0 +1,92 @@
+{ 	
+	"1": {
+		"username": "Cannon",
+		"name": "Opdracht 1: ERD",
+		"desc" : "Maak een Entity Relationship Diagram",
+		"catagory": "School",
+		"deadline_date": "2023-1-12",
+		"deadline_time": "16:00",
+		"status": "Pending"
+	},
+	"2": {
+		"username": "Cannon",
+		"name": "Opdracht 2: SQL",
+		"desc" : "",
+		"catagory": "School",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Not Started"
+	},
+	"3": {
+		"username": "Cannon",
+		"name": "Opdracht 3: JSON",
+		"desc" : "We hebben nog geen Back End, dus de data komt uit JSON files",
+		"catagory": "School",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Pending"
+	},
+	"4": {
+		"username": "Cannon",
+		"name": "Opdracht 4: REACT Dashboard",
+		"desc" : "",
+		"catagory": "School",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Pending"
+	},
+	"5": {
+		"username": "Cannon",
+		"name": "Opdracht 5: REACT Tasks",
+		"desc" : "",
+		"catagory": "School",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Pending"
+	},
+	"6": {
+		"username": "Cannon",
+		"name": "Opdracht 6: REACT Website",
+		"desc" : "",
+		"catagory": "School",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Pending"
+	},
+	"7": {
+		"username": "Cannon",
+		"name": "Opdracht Artsy pagina",
+		"desc" : "de Artsy pagina moet nog afgemaakt worden",
+		"catagory": "School",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Pending"
+	},
+	"8": {
+		"username": "Cannon",
+		"name": "Boekenlijst",
+		"desc" : "i.v.m dat ik ziek was moet deze nog gemaakt worden",
+		"catagory": "School",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Pending"
+	},
+	"9": {
+		"username": "Cannon",
+		"name": "Opdracht 7: service laag via express en knex",
+		"desc" : "geen service laag? Tuurlijk wel!",
+		"catagory": "extra",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Pending"
+	},
+	"10": {
+		"username": "Reduantagi",
+		"name": "Grapperh",
+		"desc" : "onder de grond",
+		"catagory": "Onderwereld",
+		"deadline_date": "",
+		"deadline_time": "",
+		"status": "Pending"
+	}
+}

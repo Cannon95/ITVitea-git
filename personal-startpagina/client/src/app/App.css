@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+  
+  width: 100vw;
+  height: 100vh;
+}
+#app-bg{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(53, 53, 53);
+}
+
+#main{
+  display: grid;
+}
+
+
+
