@@ -1,6 +1,7 @@
 package nl.cannontm.webserver.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,26 +20,29 @@ public class Player {
 
     private String name;
 
+    private Integer townHallLevel;
+
     @ManyToOne
-    @JoinColumn(name = "clantag", nullable = false)
+    @JsonBackReference
     private Clan clan;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "heroes_id")
     private Heroes heroes;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(cascade = CascadeType.ALL)
     private Troops troops;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(cascade = CascadeType.ALL)
     private DarkTroops darkTroops;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(cascade = CascadeType.ALL)
     private Sieges sieges;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(cascade = CascadeType.ALL)
     private Spells spells;
 
-    @OneToOne(mappedBy = "player")
+    @OneToOne(cascade = CascadeType.ALL)
     private Pets pets;
 
     public Player(String player_tag, String name){

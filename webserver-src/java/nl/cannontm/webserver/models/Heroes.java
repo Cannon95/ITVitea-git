@@ -17,7 +17,7 @@ public class Heroes {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "player_tag")
     private Player player;
     private Integer king,queen,warden,champion;

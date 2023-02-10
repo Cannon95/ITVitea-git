@@ -1,5 +1,6 @@
 package nl.cannontm.webserver.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -20,9 +21,9 @@ public class Clan {
     @Id
     private String tag;
     private String name;
-    private Integer members;
 
-    @OneToMany(mappedBy = "clan")
+    @OneToMany
+    @JsonManagedReference
     private Set<Player> MemberList;
 
 

@@ -1,15 +1,13 @@
 package nl.cannontm.webserver.services;
 
 import nl.cannontm.webserver.models.Clan;
-import nl.cannontm.webserver.models.ClanMember;
 import nl.cannontm.webserver.models.Player;
 import nl.cannontm.webserver.models.ProcessTask;
+import nl.cannontm.webserver.singleton.Queue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.net.URI;
@@ -23,15 +21,16 @@ import java.util.stream.Collectors;
 public class CallAPIService {
 
     @Autowired
-    APIResponseService apiResponseService;
+    SchedulerService schedulerService;
 
     @Value("${coc_token}")
     private String coc_token;
 
    // @Scheduled(cron = "0 */10 * * * *")
-    public synchronized Clan callClanAPI() {
+    public synchronized Clan getClan(String tag) {
 
-        URI url = URI.create("https://api.clashofclans.com/v1/clans/%2328UC9CQ9V");
+        ;
+        URI url = URI.create("https://api.clashofclans.com/v1/clans/%23" + tag.substring(1));
         return WebClient.create()
                 .get()
                 .uri(url)
@@ -39,33 +38,42 @@ public class CallAPIService {
                 .retrieve()
                 .bodyToMono(Clan.class)
                 .map(clan -> {
-                    String tag = clan.getTag();
+                    String tag1 = clan.getTag();
                     String name = clan.getName();
-                    Integer members = clan.getMembers();
                     System.out.println(clan.getName());
                     Set<Player> memberList = Arrays.stream(clan.getMemberList().toArray(Player[]::new)).map(player -> {
-                        String tag1 = player.getTag();
+                        String tag2 = player.getTag();
                         String name1 = player.getName();
-                        return new Player(tag1,name1);
+                        return new Player(tag2,name1);
                     }).collect(Collectors.toSet());
-                    Clan clan2 = new Clan(tag, name, members, memberList);
+                    Clan clan2 = new Clan(tag1, name, memberList);
                     return processClanData(clan2);
                 }).block();
 
     }
 
     // @Scheduled(cron = "0 * * * * *")
-    public synchronized void callPlayerAPI() {
+    public Player getPlayer(String tag) {
 
-        ProcessTask processTask = apiResponseService.getQueueIndex(0);
-        if(processTask != null){
-            String tag = processTask.getPlayer().getTag();
+            String url = "https://api.clashofclans.com/v1/players/%23" + tag.substring(1);
 
-            String url = "https://api.clashofclans.com/v1/players/" + tag;
+        return WebClient.create()
+                .get()
+                .uri(url)
+                .headers(httpHeaders -> httpHeaders.setBearerAuth(coc_token))
+                .retrieve()
+                .bodyToMono(Player.class)
+                .map(player -> {
+                    String tag1 = player.getTag();
+                    String name = player.getName();
+                    Integer th = player.getTownHallLevel();
 
+
+                    return new Player(tag1, name);
+                }).block();
 
         }
-    }
+
 
 
 
