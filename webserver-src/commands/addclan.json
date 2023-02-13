@@ -1,0 +1,19 @@
+{
+  "name": "addclan",
+  "description": "Voegd clan toe",
+  "default_member_permissions": "0",
+  "options": [
+    {
+      "name": "clantag",
+      "description": "tag van de clan",
+      "type": 3,
+      "required": true
+    },
+    {
+      "name": "tracking",
+      "description": "trackingwaarde, vraag maar aan Cannon wat het doet",
+      "type": 4,
+      "required": true
+    }
+  ]
+}

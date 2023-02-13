@@ -1,0 +1,33 @@
+{
+  "name": "addnotition",
+  "description": "voegd notitie toe aan speler",
+  "default_member_permissions": "0",
+  "options": [
+    {
+      "name": "type",
+      "description": "type van de notitie",
+      "type": 3,
+      "required": true,
+      "choices": [
+        {
+          "name": "warn",
+          "value": "warn"
+        },
+        {
+          "name": "kick",
+          "value": "kick"
+        },
+        {
+          "name": "blacklist",
+          "value": "blacklist"
+        }
+      ]
+    },
+    {
+      "name": "tracking",
+      "description": "wat is de reden?",
+      "type": 3,
+      "required": true
+    }
+  ]
+}
