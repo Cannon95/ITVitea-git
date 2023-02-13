@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class Clan {
 
     @OneToMany
     @JsonManagedReference
-    private List<Player> memberList;
+    private List<Player> memberList = new ArrayList<>();
 
     public Clan(String tag1, String name, List<Player> memberList) {
         this.tag = tag1;
@@ -43,17 +44,7 @@ public class Clan {
     }
 
 
-    public void AddMember(Player player){
-        memberList.add(player);
-    }
-    public synchronized void removePlayer(String tag){
-        for (int i = 0; i< memberList.size(); i++){
-            if(memberList.get(i).getTag().equals(tag)){
-                memberList.remove(i);
-                return;
-            }
-        }
-    }
+
 
 
 

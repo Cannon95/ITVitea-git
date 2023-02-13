@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public interface PlayerRepository extends CrudRepository<Player, Long> {
 
-
+    Player findByTag(String tag);
 
 
 }

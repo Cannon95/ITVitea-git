@@ -69,10 +69,11 @@ public class SchedulerService {
 
 
         List<String> oldPlayerData = new ArrayList<>(Queue.getInstance().getPlayersInClan(task.getTag()));
-
+        List<String> playerDataSaved = new ArrayList<>();
         List<String> newPlayerData = new ArrayList<>();
         for(Player player : clan.getMemberList()){
             newPlayerData.add(player.getTag());
+            playerDataSaved.add(player.getTag());
         }
 
         if(oldPlayerData.isEmpty()){ //happends when data is missing, not a full clan that's popping up in the join log.
@@ -82,7 +83,7 @@ public class SchedulerService {
 
         oldPlayerData.removeAll(newPlayerData);
         newPlayerData.removeAll(Queue.getInstance().getPlayersInClan(task.getTag()));
-
+        Queue.getInstance().setPlayerOfClan(task.getTag(), playerDataSaved);
         if (!newPlayerData.isEmpty()){
             onPlayerAction(newPlayerData, "joining", 4, "Adding " + newPlayerData.size() + " joining player(s) to Queue.");
 
@@ -93,6 +94,11 @@ public class SchedulerService {
 
         }
 
+        List<Player> outdatedPlayers = playerService.getUpdatablePlayers();
+        if(!outdatedPlayers.isEmpty()){
+            BotConfig.log("adding " + outdatedPlayers.size() + " outdated Players to the Queue");
+            outdatedPlayers.forEach(player -> Queue.getInstance().enqueue("player", player.getTag(), "updating", 0));
+        }
 
     }
 
@@ -111,6 +117,7 @@ public class SchedulerService {
             for (String tag : playerlist){
                 Player player = playerService.getPlayerFromTag(tag);
                 log = log + ", " + player.getName();
+
             }
             BotConfig.log(log.substring(2) + " Left");
 

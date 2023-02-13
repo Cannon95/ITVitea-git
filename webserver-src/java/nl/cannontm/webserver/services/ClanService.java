@@ -51,14 +51,7 @@ public class ClanService {
     }
 
     public Clan getClanFromTag(String tag){
-        Iterable<Clan> clanlist = clanRepository.findAll();
-        while(clanlist.iterator().hasNext()){
-            Clan clan = clanlist.iterator().next();
-            if(clan.getTag().equals(tag)){
-                return clan;
-            }
-        }
-        return getOthersClan();
+        return clanRepository.findByTag(tag);
     }
 
 

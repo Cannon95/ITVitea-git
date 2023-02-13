@@ -59,7 +59,7 @@ public class PlayerService {
             player.setSieges(tempSieges);
             player.setSpells(tempSpells);
             player.setPets(tempPets);
-
+            player.setDate_check(System.currentTimeMillis());
             return playerRepository.save(player);
 
         }
@@ -89,14 +89,7 @@ public class PlayerService {
     }
 
     public Player getPlayerFromTag(String tag){
-        Iterable <Player> playerlist = playerRepository.findAll();
-        while(playerlist.iterator().hasNext()){
-            Player player = playerlist.iterator().next();
-            if(player.getTag().equals(tag)){
-                return player;
-            }
-        }
-        return null;
+      return playerRepository.findByTag(tag);
     }
 
     public List<Player> getUpdatablePlayers(){

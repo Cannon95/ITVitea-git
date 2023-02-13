@@ -27,6 +27,11 @@ public class BotConfig {
     @Value("${token}")
     private String token;
 
+
+    private static String joinChannel = "1074671041550491698";
+
+
+    private static String eventChannel = "1074671008847495189";
     private static GatewayDiscordClient client;
 
 
@@ -51,7 +56,7 @@ public class BotConfig {
     }
 
     public static void log(String message){
-        client.getChannelById(Snowflake.of(1073987243406000170L))
+        client.getChannelById(Snowflake.of(eventChannel))
                 .cast(TextChannel.class)
                 .flatMap(textChannel -> textChannel.createMessage(message))
                 .subscribe();
@@ -81,12 +86,12 @@ public class BotConfig {
                 .timestamp(Instant.now())
                 .build();
 
-        client.getChannelById(Snowflake.of(1073987243406000170L))
+        client.getChannelById(Snowflake.of(joinChannel))
                 .cast(TextChannel.class)
                 .flatMap(textChannel -> textChannel.createMessage(embed))
                 .subscribe();
 
-        client.getChannelById(Snowflake.of(1073987243406000170L))
+        client.getChannelById(Snowflake.of(joinChannel))
                 .cast(TextChannel.class)
                 .flatMap(textChannel -> textChannel.createMessage("@everyone , rusher of te lage speler???"))
                 .subscribe();

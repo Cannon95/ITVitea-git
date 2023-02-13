@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ClanRepository extends CrudRepository<Clan, Long> {
 
-
+    Clan findByTag(String tag);
 
 }
