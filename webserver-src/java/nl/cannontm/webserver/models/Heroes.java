@@ -11,17 +11,28 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Heroes {
+public class Heroes extends Stat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "player_tag")
+    @MapsId
+    @JoinColumn(name = "id")
     private Player player;
     private Integer king,queen,warden,champion;
 
 
+    public int total(){
+        return valuate(this.king) +
+                valuate(this.queen) +
+                valuate(this.warden) +
+                valuate(this.champion);
+    }
+
+    private int valuate(Integer stat){
+        return stat == null ? 0 : stat;
+    }
 
 }

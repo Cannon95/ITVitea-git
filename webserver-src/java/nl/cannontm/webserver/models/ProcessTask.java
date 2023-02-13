@@ -7,8 +7,10 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ProcessTask {
 
-    Player player;
+    String taskType;
+    String tag;
     String reason;
+    int priority;
 
 
 }

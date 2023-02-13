@@ -13,29 +13,7 @@ import java.util.List;
 @Transactional
 public class APIResponseService {
 
-        List<ProcessTask> Queue = new ArrayList<>();
 
-
-        public void enqueue(Player player, String reason){
-                Queue.add(new ProcessTask(player,reason));
-        }
-
-        public void dequeue(int id){
-                Queue.remove(0);
-        }
-
-        public ProcessTask getQueueIndex(int id){
-
-                if(Queue.isEmpty())return null;
-
-                try {
-                        return Queue.get(id);
-                }
-                catch(Exception e){
-                        System.err.println("attempt to grab an non existing place in the queue: place " + id + " Where size is " + Queue.size());
-                        return null;
-                }
-        }
 
         public Clan processClanData(Clan clan){
 

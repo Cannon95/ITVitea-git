@@ -11,16 +11,31 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Sieges {
+public class Sieges extends Stat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "player_tag")
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
     private Player player;
     private Integer wallwrecker,battleblimp,stoneslammer,siegebarracks,loglauncher,flameflinger,battledrill;
+
+    public int total(){
+        return valuate(this.wallwrecker) +
+                valuate(this.battleblimp) +
+                valuate(this.stoneslammer) +
+                valuate(this.siegebarracks) +
+                valuate(this.loglauncher) +
+                valuate(this.flameflinger) +
+                valuate(this.battledrill);
+    }
+
+    private int valuate(Integer stat){
+        return stat == null ? 0 : stat;
+    }
 
 
 }

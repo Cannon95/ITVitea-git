@@ -2,11 +2,14 @@ package nl.cannontm.webserver.models;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,33 +19,53 @@ import lombok.Setter;
 public class Player {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+
     private String tag;
 
     private String name;
 
     private Integer townHallLevel;
 
+    private Long date_check;
+
+    private String ownedBy;
+
+    @Transient
+    private String clanTag;
+
     @ManyToOne
     @JsonBackReference
     private Clan clan;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "heroes_id")
+    @OneToMany
+    @JsonManagedReference
+    private List<Notitions> notitionsList;
+
+    @OneToOne(mappedBy = "player")
+    @PrimaryKeyJoinColumn
     private Heroes heroes;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "player")
+    @PrimaryKeyJoinColumn
     private Troops troops;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private DarkTroops darkTroops;
+    @OneToOne(mappedBy = "player")
+    @PrimaryKeyJoinColumn
+    private DarkTroops darktroops;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "player")
+    @PrimaryKeyJoinColumn
     private Sieges sieges;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "player")
+    @PrimaryKeyJoinColumn
     private Spells spells;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "player")
+    @PrimaryKeyJoinColumn
     private Pets pets;
 
     public Player(String player_tag, String name){
@@ -50,5 +73,11 @@ public class Player {
         this.name = name;
     }
 
-
+    public Player(String tag, String name, Integer townHallLevel, String ownedBy, Clan clan) {
+        this.tag = tag;
+        this.name = name;
+        this.townHallLevel = townHallLevel;
+        this.ownedBy = ownedBy;
+        this.clan = clan;
+    }
 }

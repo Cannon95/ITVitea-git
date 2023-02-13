@@ -11,14 +11,31 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Pets {
+public class Pets extends Stat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "player_tag")
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "id")
     private Player player;
     private Integer lassi,owl,yak,unicorn,frosty,diggy,lizard,phoenix;
+
+    public int total(){
+        return valuate(this.lassi) +
+                valuate(this.owl) +
+                valuate(this.yak) +
+                valuate(this.unicorn) +
+                valuate(this.frosty) +
+                valuate(this.diggy) +
+                valuate(this.lizard) +
+                valuate(this.phoenix);
+    }
+
+    private int valuate(Integer stat){
+        return stat == null ? 0 : stat;
+    }
+
 }
