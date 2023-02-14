@@ -1,5 +1,6 @@
 package nl.cannontm.webserver.services;
 
+import nl.cannontm.webserver.config.BotConfig;
 import nl.cannontm.webserver.models.*;
 import nl.cannontm.webserver.models.APImodels.APIHeroes;
 import nl.cannontm.webserver.models.APImodels.APIPlayer;
@@ -7,9 +8,13 @@ import nl.cannontm.webserver.models.APImodels.APISpells;
 import nl.cannontm.webserver.singleton.Queue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -61,17 +66,22 @@ public class CallAPIService {
                 .uri(url)
                 .headers(httpHeaders -> httpHeaders.setBearerAuth(coc_token))
                 .retrieve()
+                .onStatus(HttpStatusCode::is4xxClientError, this::handleErrors)
                 .bodyToMono(APIPlayer.class)
                 .map(apiPlayer -> {
                     Player player = new Player();
                     player.setTag(apiPlayer.getTag());
                     player.setName(apiPlayer.getName());
                     player.setTownHallLevel(apiPlayer.getTownHallLevel());
-                    player.setClanTag(apiPlayer.getClan().getTag());
+                    if(apiPlayer.getClan() != null){
+                        player.setClanTag(apiPlayer.getClan().getTag());
+                    }
+                    else{
+                        player.setClanTag("null");
+                    }
                     //Heroes
                     Heroes heroes = new Heroes();
                     apiPlayer.getHeroes().stream().forEach(apiHeroes -> {
-                        System.out.println("Hero Name: " + apiHeroes.getName() + " " + apiHeroes.getLevel());
                         if(apiHeroes.getName().equals("Barbarian King"))heroes.setKing(apiHeroes.getLevel());
                         if(apiHeroes.getName().equals("Archer Queen"))heroes.setQueen(apiHeroes.getLevel());
                         if(apiHeroes.getName().equals("Grand Warden"))heroes.setWarden(apiHeroes.getLevel());
@@ -168,7 +178,12 @@ public class CallAPIService {
         }
 
 
-
+    private Mono<Throwable> handleErrors(ClientResponse response ){
+        return response.bodyToMono(String.class).flatMap(body -> {
+            BotConfig.log("an Error Occured during API Call: " + body);
+            return Mono.error(new Exception());
+        });
+    }
 
 
 

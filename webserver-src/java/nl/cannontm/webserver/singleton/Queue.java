@@ -32,6 +32,9 @@ public class Queue {
             if(processTask.getTag().equals(tag)){
                 flag = true;
             }
+            if(tag.equals("null")){
+                flag = true;
+            }
         }
         if(!flag){
             list.add(new ProcessTask(type, tag,reason, priority));
@@ -40,7 +43,7 @@ public class Queue {
     }
 
     public void dequeue(int id){
-        list.remove(0);
+        list.remove(id);
     }
 
     public ProcessTask getQueueIndex(int id){
@@ -99,6 +102,33 @@ public class Queue {
     public void setPlayerOfClan(String clantag, List<String> playerlist){
 
         clanMap.replace(clantag, playerlist);
+    }
+
+    public String getQueueParts(){
+        int countP1 = 0;
+        int countP2 = 0;
+        int countP3 = 0;
+        int countP4 = 0;
+        int countP5 = 0;
+        for(ProcessTask task : list){
+            if(task.getPriority() == 0){
+                countP1++;
+            }
+            if(task.getPriority() == 1){
+                countP2++;
+            }
+            if(task.getPriority() == 2){
+                countP3++;
+            }
+            if(task.getPriority() == 3){
+                countP4++;
+            }
+            if(task.getPriority() == 4){
+                countP5++;
+            }
+
+        }
+        return "[" + countP1 + "/" + countP2 + "/" + countP3 + "/" + countP4 + "/" + countP5 + "]";
     }
 
 

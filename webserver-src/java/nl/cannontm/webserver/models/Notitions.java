@@ -21,8 +21,6 @@ public class Notitions {
 
     private String type;
     private String description;
-
-    @ManyToOne
-    @JsonBackReference
-    private Player player;
+    private String tag;
+    private Long date;
 }

@@ -1,5 +1,6 @@
 package nl.cannontm.webserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class Troops extends Stat {
 
         @OneToOne
         @MapsId
+        @JsonIgnore
         @JoinColumn(name = "id")
         private Player player;
         private Integer barbarian,archer,giant,goblin,wallbreaker,balloon,wizard,healer,dragon,pekka,babydragon,miner,electrodragon,yeti,dragonrider,electrotitan;
@@ -34,6 +36,7 @@ public class Troops extends Stat {
                 valuate(this.healer) +
                 valuate(this.dragon) +
                 valuate(this.pekka) +
+                valuate(this.babydragon) +
                 valuate(this.miner) +
                 valuate(this.electrodragon) +
                 valuate(this.yeti) +

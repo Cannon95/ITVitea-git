@@ -33,16 +33,12 @@ public class Player {
 
     private String ownedBy;
 
-    @Transient
     private String clanTag;
 
     @ManyToOne
     @JsonBackReference
     private Clan clan;
 
-    @OneToMany
-    @JsonManagedReference
-    private List<Notitions> notitionsList;
 
     @OneToOne(mappedBy = "player")
     @PrimaryKeyJoinColumn
@@ -73,11 +69,12 @@ public class Player {
         this.name = name;
     }
 
-    public Player(String tag, String name, Integer townHallLevel, String ownedBy, Clan clan) {
+    public Player(String tag, String name, Integer townHallLevel, String ownedBy, Clan clan, String clanTag) {
         this.tag = tag;
         this.name = name;
         this.townHallLevel = townHallLevel;
         this.ownedBy = ownedBy;
         this.clan = clan;
+        this.clanTag = clanTag;
     }
 }

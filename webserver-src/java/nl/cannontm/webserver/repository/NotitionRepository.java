@@ -6,5 +6,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface NotitionRepository extends CrudRepository<Notitions, Long> {
-
+    Iterable<Notitions> findByTag(String tag);
 }

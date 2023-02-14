@@ -4,6 +4,7 @@ import nl.cannontm.webserver.models.*;
 import nl.cannontm.webserver.repository.ClanRepository;
 import nl.cannontm.webserver.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ public class PlayerService {
     @Autowired
     StatService statService;
 
+
     public Player newPlayer(Clan clan, Player player){
 
 
@@ -33,12 +35,10 @@ public class PlayerService {
             return null;
         }
         player.setClan(clan);
-        Player newPlayer = new Player(player.getTag(), player.getName(), player.getTownHallLevel(), player.getOwnedBy(), player.getClan());
+        Player newPlayer = new Player(player.getTag(), player.getName(), player.getTownHallLevel(), player.getOwnedBy(), player.getClan(), player.getClanTag());
         playerRepository.save(newPlayer);
         newPlayer = addStatstoPlayer(getIdFromPlayer(player.getTag()), player.getHeroes(), player.getTroops(), player.getDarktroops(), player.getSieges(), player.getSpells(), player.getPets());
 
-
-        System.out.println("Creating and Adding player " + player.getName() + " to database Done");
         return newPlayer;
     }
 
@@ -68,9 +68,11 @@ public class PlayerService {
 
 
     public Player updatePlayer(Clan clan, Player player){
-        if(!clanRepository.existsById(clan.getId())){
-            System.out.println("Error: Trying to update Player to nonExist Clan");
-            return null;
+        if(clan == null || !clanRepository.existsById(clan.getId())){
+            clan = new Clan();
+            clan.setTag("null");
+            clan.setName("Other");
+            clan.setId(-1L);
         }
         Player oldPlayer = getPlayerFromTag(player.getTag());
         if(oldPlayer == null){
@@ -78,6 +80,7 @@ public class PlayerService {
             return newPlayer(clan, player);
         }
         oldPlayer.setClan(clan);
+        oldPlayer.setClanTag(clan.getTag());
         statService.updateHeroesStat(oldPlayer, player.getHeroes());
         statService.updateTroopStat(oldPlayer, player.getTroops());
         statService.updateDarkTroopsStat(oldPlayer, player.getDarktroops());
@@ -97,8 +100,8 @@ public class PlayerService {
         playerRepository.findAll().forEach(playerlist::add);
 
 
-        playerlist.removeIf(player -> player.getClan().getId() == -1L && player.getOwnedBy().equals("null")); // removes player from list if it is not in a managed clan and not owned by someone in the core of the clan
-        playerlist.removeIf(player -> System.currentTimeMillis() - player.getDate_check() < 1000*3600*12); //removes te player if the date is shorter than 12 hours ago.
+        playerlist.removeIf(player -> player.getClanTag().equals("null") && player.getOwnedBy() == null); // removes player from list if it is not in a managed clan and not owned by someone in the core of the clan
+        playerlist.removeIf(player -> System.currentTimeMillis() - player.getDate_check() < 1000*3600*6); //removes te player if the date is shorter than 12 hours ago.
 
         return playerlist;
     }
@@ -112,6 +115,30 @@ public class PlayerService {
         else return null;
     }
 
+    public List<Player> getAllCannonPlayers(){
+        List<Player> cannonList = new ArrayList<>();
+        cannonList.add(getPlayerFromTag("#Q0UVP29JR")); //Mister Cannon
+        cannonList.add(getPlayerFromTag("#LPGRYLPG2")); //Cannon II
+        cannonList.add(getPlayerFromTag("#LURRJP99L")); //Cannon III
+        cannonList.add(getPlayerFromTag("#LCV09QJGP")); //Cannon IV
+        cannonList.add(getPlayerFromTag("#LVG90GP9G")); //Cannon V
+        cannonList.add(getPlayerFromTag("#Q2QG29GCL")); //Cannon VI
+        cannonList.add(getPlayerFromTag("#LVYCCLVVL")); //Cannon VII
+        cannonList.add(getPlayerFromTag("#LUVJ822GC")); //Cannon VIII
+        cannonList.add(getPlayerFromTag("#LCG8RU9JP")); //Cannon IX
+        cannonList.add(getPlayerFromTag("#LVVPQY9JJ")); //Cannon X
+        cannonList.add(getPlayerFromTag("#LCG89RYCY")); //Cannon XI
+        cannonList.add(getPlayerFromTag("#QYV2UUP9U")); //Cannon XII
+        cannonList.add(getPlayerFromTag("#Q00PRRUYQ")); //Cannon R1
+        cannonList.add(getPlayerFromTag("#Q02P0GYUR")); //Cannon R2
+        cannonList.add(getPlayerFromTag("#Q9R9VRGRJ")); //Cannon TH4
+        cannonList.add(getPlayerFromTag("#Q9YLY9L02")); //Cannon TH2
+
+        return cannonList;
+    }
 
 
+    public Iterable<Player> getAllPlayersFromClan(String tag) {
+       return playerRepository.findByClanTag(tag, Sort.unsorted());
+    }
 }

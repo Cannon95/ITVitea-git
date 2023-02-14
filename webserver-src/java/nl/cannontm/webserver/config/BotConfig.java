@@ -7,13 +7,18 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.Event;
 import discord4j.core.object.entity.channel.Channel;
 import discord4j.core.object.entity.channel.TextChannel;
+import discord4j.core.object.entity.channel.VoiceChannel;
 import discord4j.core.object.presence.ClientActivity;
 import discord4j.core.object.presence.ClientPresence;
 import discord4j.core.spec.EmbedCreateSpec;
+import discord4j.core.spec.VoiceChannelEditSpec;
 import discord4j.rest.RestClient;
 import discord4j.rest.util.Color;
 import nl.cannontm.webserver.listeners.EventListener;
 import nl.cannontm.webserver.models.*;
+import nl.cannontm.webserver.services.ClanService;
+import nl.cannontm.webserver.services.NotitionsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,12 +33,14 @@ public class BotConfig {
     private String token;
 
 
-    private static String joinChannel = "1074671041550491698";
+    private static String joinChannel = "1071774210151694337";
+    private static String QueueVChannel = "1074734961854271548";
 
-
-    private static String eventChannel = "1074671008847495189";
+    private static String eventChannel = "1073987243406000170";
     private static GatewayDiscordClient client;
 
+    @Autowired
+    ClanService clanService;
 
 
     @Bean
@@ -63,26 +70,40 @@ public class BotConfig {
 
     }
 
-    public static void onPlayerJoin(Player player) {
+    public static void onPlayerLeft(String message){
+        client.getChannelById(Snowflake.of(joinChannel))
+                .cast(TextChannel.class)
+                .flatMap(textChannel -> textChannel.createMessage(message))
+                .subscribe();
+
+    }
+
+    public static void setQueueShowChannel(int size){
+        System.out.println("Showing QueueSize: " + size);
+        client.getChannelById(Snowflake.of(QueueVChannel))
+                .cast(VoiceChannel.class)
+                .map(voiceChannel -> voiceChannel.edit().name("Queue: " + size).subscribe())
+                .subscribe();
+    }
+
+    public static void onPlayerJoin(Player player, Clan clan, List<Notitions> notitions) {
 
         int heroCount = player.getHeroes().total();
         int labCount = calcLab(player);
         Color color = Color.of(0x00FF00);
-        boolean isToLow = false;
+
         if(heroCount < 120 || labCount < 180){
             color = Color.of(0xFF8800);
         }
-
         Heroes h = player.getHeroes();
         EmbedCreateSpec embed = EmbedCreateSpec.builder()
                 .color(color)
-                .title(player.getName() + " Joined!")
+                .title(player.getName() + " Joined " + clan.getName() + " !")
                 .description("TH" + player.getTownHallLevel())
-                .addField("Heroes: " + player.getHeroes().total(), "[" + h.getKing() + "/" + h.getQueen() + " / " + h.getWarden() + " / " + h.getChampion() + "]" , false)
-                .addField("\u200B", "\u200B", false)
-                .addField("Lab: " + labCount, "\u200B", false)
-                .addField("\u200B", "\u200B", false)
-                .addField("Pets: " + player.getPets().total(), "\u200B", false)
+                .addField("Heroes: " + player.getHeroes().total(), "[" + h.getKing() + " / " + h.getQueen() + " / " + h.getWarden() + " / " + h.getChampion() + "]" , false)
+                .addField("Lab: " + labCount, "", false)
+                .addField("Pets: " + player.getPets().total(), "", false)
+                .addField("Warns: " + notitions.size(), "", false)
                 .timestamp(Instant.now())
                 .build();
 
@@ -90,12 +111,32 @@ public class BotConfig {
                 .cast(TextChannel.class)
                 .flatMap(textChannel -> textChannel.createMessage(embed))
                 .subscribe();
+        if(player.getClanTag().equals("#28UC9CQ9V") && (player.getHeroes().total() < 120 || labCount < 180)){
+            client.getChannelById(Snowflake.of(joinChannel))
+                    .cast(TextChannel.class)
+                    .flatMap(textChannel -> textChannel.createMessage("@everyone , rusher of te lage speler???"))
+                    .subscribe();
+        }
+        if(player.getClanTag().equals("#2YPPLQ9QL") && (player.getHeroes().total() < 90 || labCount < 105)){
+            client.getChannelById(Snowflake.of(joinChannel))
+                    .cast(TextChannel.class)
+                    .flatMap(textChannel -> textChannel.createMessage("@everyone , rusher of te lage speler???"))
+                    .subscribe();
+        }
+        for (Notitions notition : notitions){
+            if(notition.getType().equals("blacklist")){
+                client.getChannelById(Snowflake.of(joinChannel))
+                        .cast(TextChannel.class)
+                        .flatMap(textChannel -> textChannel.createMessage("@everyone , Deze speler staat op de blacklist!"))
+                        .subscribe();
+                return;
+            }
+        }
 
-        client.getChannelById(Snowflake.of(joinChannel))
-                .cast(TextChannel.class)
-                .flatMap(textChannel -> textChannel.createMessage("@everyone , rusher of te lage speler???"))
-                .subscribe();
     }
+
+
+
 
 
     private static int calcLab(Player player){

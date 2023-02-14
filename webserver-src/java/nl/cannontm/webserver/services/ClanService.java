@@ -18,6 +18,9 @@ public class ClanService {
     @Autowired
     ClanRepository clanRepository;
 
+    @Autowired
+    PlayerService playerService;
+
 
     public Clan newClan(Clan clan){
 

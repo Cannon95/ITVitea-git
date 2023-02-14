@@ -1,5 +1,6 @@
 package nl.cannontm.webserver.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,6 +20,7 @@ public class Sieges extends Stat {
 
     @OneToOne
     @MapsId
+    @JsonIgnore
     @JoinColumn(name = "id")
     private Player player;
     private Integer wallwrecker,battleblimp,stoneslammer,siegebarracks,loglauncher,flameflinger,battledrill;
