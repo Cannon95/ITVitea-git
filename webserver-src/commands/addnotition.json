@@ -1,8 +1,14 @@
 {
   "name": "addnotition",
   "description": "voegd notitie toe aan speler",
-  "default_member_permissions": "0",
+  "default_member_permissions": "2",
   "options": [
+    {
+      "name": "spelertag",
+      "description": "de Tag van de Speler",
+      "type": 3,
+      "required": true
+    },
     {
       "name": "type",
       "description": "type van de notitie",
@@ -24,7 +30,7 @@
       ]
     },
     {
-      "name": "tracking",
+      "name": "reden",
       "description": "wat is de reden?",
       "type": 3,
       "required": true

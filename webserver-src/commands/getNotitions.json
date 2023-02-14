@@ -1,0 +1,13 @@
+{
+  "name": "getnotition",
+  "description": "check notities van spelers",
+  "default_member_permissions": "2",
+  "options": [
+    {
+      "name": "spelertag",
+      "description": "de Tag van de Speler",
+      "type": 3,
+      "required": true
+    }
+  ]
+}
