@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8fa9c226-9e03-48c5-9da8-20d26bc03f9f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../opdracht6feb/src/main/java/com/opdracht/opdracht6feb/config/BotConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../opdracht6feb/src/main/java/com/opdracht/opdracht6feb/config/CommandRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../opdracht6feb/src/main/java/com/opdracht/opdracht6feb/config/IEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../opdracht6feb/src/main/java/com/opdracht/opdracht6feb/controller/BotController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../opdracht6feb/src/main/java/com/opdracht/opdracht6feb/service/ChatInputInteractionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../opdracht6feb/src/main/resources/commands/hello.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../6feb/hallo/src/main/java/com/oefening/hallo/HalloController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../6feb/hallo2/src/main/java/com/oefening/hallo2/controller/KatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../6feb/hallo2/src/main/java/com/oefening/hallo2/models/Kat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../6feb/hallo2/src/main/java/com/oefening/hallo2/repository/KatRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../6feb/hallo2/src/main/java/com/oefening/hallo2/service/KatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../boodschappenlijstje/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../boodschappenlijstje/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../boodschappenlijstje/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../boodschappenlijstje/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../boodschappenlijstje/client/src/AppComps/AddTasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../boodschappenlijstje/client/src/AppComps/AddTasks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../boodschappenlijstje/client/src/Store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../boodschappenlijstje/client/src/Store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../boodschappenlijstje/client/src/reducers/TaskListReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../boodschappenlijstje/client/src/reducers/TaskListReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../personal-startpagina/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../personal-startpagina/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/src/app/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../personal-startpagina/client/src/app/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/src/app/header/header.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/src/app/header/header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/src/app/navigate/navigate.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/src/app/navigate/navigate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../personal-startpagina/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../personal-startpagina/client/src/index.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2LUlzf97gDLHyJwHOUUiohjB602" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/markv/IdeaProjects/Fase3/theorie/feb9/pom.xml",
+    "settings.editor.selected.configurable": "project.propCompiler"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="lua.app" factoryName="Lua Application">
+      <option name="program" value="lua.exe" />
+      <option name="file" value="" />
+      <option name="workingDir" value="$PROJECT_DIR$/src/main/java" />
+      <option name="debuggerType" value="1" />
+      <option name="params" value="" />
+      <option name="charset" value="UTF-8" />
+      <option name="showConsole" value="true" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8fa9c226-9e03-48c5-9da8-20d26bc03f9f" name="Changes" comment="" />
+      <created>1675933809344</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675933809344</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

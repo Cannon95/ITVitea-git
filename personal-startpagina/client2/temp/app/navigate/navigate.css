@@ -1,0 +1,9 @@
+#navigate{
+    position: fixed;
+    width: 200px;
+    height: 94%;
+    top: 3%;
+    left:3%;
+    background-color: rgb(102, 102, 102);
+    border-radius: 20px;
+}

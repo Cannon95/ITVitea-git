@@ -1,16 +1,16 @@
-import './App.css';
-import Header from "./header/header";
-import Navigate from "./navigate/navigate";
+import '../index.css';
+import Header from "./Header";
+import Navigate from './Navigate';
+import Main from './Main';
 
 function App() {
   return (
-    <div className="App">
-      <div id="app-bg"></div>
+    <div className="text-center w-screen h-screen">
+      <div className="fixed h-screen w-screen bg-neutral-900"></div>{/* app-bg */}
       <Header/>
       <Navigate/>
-      <div id="main">
-
-      </div>
+      <div className="absolute left-5 sm:left-52 top-44 sm:top-24 font-bold text-xl text-neutral-400 decoration-red-900">Dashboard</div>
+      <Main/>
     </div>
   );
 }

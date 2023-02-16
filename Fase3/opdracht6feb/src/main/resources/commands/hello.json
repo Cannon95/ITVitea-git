@@ -1,0 +1,12 @@
+{
+  "name":"hallo",
+  "description": "zegt gedag",
+  "options": [
+      {
+        "name": "naam",
+        "description": "je naam",
+        "type": 3,
+        "required": true
+      }
+  ]
+}
